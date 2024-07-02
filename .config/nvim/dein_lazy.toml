@@ -1,0 +1,25 @@
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+    let g:rainbow_active = 1
+'''
+
+[[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+merged = 0
+on_event = 'BufRead'
+hook_post_update = 'TSUpdate'
+hook_add = 'source ~/.config/nvim/plugins/nvim-treesitter.lua'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+on_ft = ['html', 'xhtml', 'javascript', 'typescript', 'javascript.jsx', 'typescript.tsx']
+hook_add = '''
+  let g:closetag_filenames='*.html'
+  let g:closetag_xhtml_filenames='*.jsx,*.tsx,*.vue'
+  let g:closetag_filetypes='html'
+  let g:closetag_xhtml_filetypes='jsx,tsx,javascript.jsx,typescript.tsx,vue'
+  let g:closetag_emptyTags_caseSensitive=1
+  let g:closetag_shortcut='>'
+'''

@@ -1,0 +1,11 @@
+{
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.noselect": false,
+  "suggest.minTriggerInputLength": 2,
+  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "suggest.snippetIndicator": " ►",
+  "coc.preferences.formatOnType": true,
+  "eslint.autoFixOnSave": true,
+  "http.proxy":"172.21.252.1:12080",
+  "https.proxy":"172.21.252.1:12080"
+}
