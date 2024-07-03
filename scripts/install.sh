@@ -11,4 +11,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
     fisher update
   fi
+
+  # Changing default shell to fish
+  echo 'Changing default shell to fish'
+  echo "$(which fish)" | sudo tee -a /etc/shells
+  chsh -s "$(which fish)"
+
 fi

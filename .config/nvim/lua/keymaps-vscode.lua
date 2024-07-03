@@ -18,9 +18,10 @@ keymap("v", "<C-d>", "<Cmd>lua require('vscode-multi-cursor').addSelectionToNext
     silent = true
 })
 
+
 keymap("n", "<space>q", ":qa!<CR>", {
     noremap = true,
     silent = true
 })
 
-vim.cmd[[nnoremap <silent> [ <cmd>lua require('vscode-neovim').call('editor.action.peekDefinition')<cr>]]
+vim.cmd [[nnoremap <silent> [ <cmd>lua require('vscode-neovim').call('editor.action.peekDefinition')<cr>]]

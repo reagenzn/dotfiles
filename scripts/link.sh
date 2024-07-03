@@ -12,9 +12,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf $(realpath ./.config/git/.gitconfig) ~/.gitconfig
   ln -sf $(realpath ./.config/git/.git-aliases) ~/.git-aliases
   ln -sf $(realpath ./.config/nvim) ~/.config/nvim
-  ln -sf $(realpath ./.config/tmux/tmux.conf) ~/tmux.conf
+  ln -sf $(realpath ./.config/tmux/.tmux.conf) ~/.tmux.conf
   # ln -sf $(realpath "$OBSIDIAN_DIR"/.vimrc) ~/.vimrc
 fi
 
 
 echo "Finish linking"
+
