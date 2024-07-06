@@ -1,6 +1,5 @@
 -- local keymap = vim.keymap
 local keymap = vim.api.nvim_set_keymap
--- keymap("n", "<C-d>", "<Cmd>lua require('vscode-neovim').call('editor.action.formatSelection')<CR>", opts)
 keymap("n", "<C-d>", "<Cmd>lua require('vscode-multi-cursor').addSelectionToNextFindMatch()<CR>", {
     noremap = true,
     silent = true
@@ -23,5 +22,11 @@ keymap("n", "<space>q", ":qa!<CR>", {
     noremap = true,
     silent = true
 })
+
+keymap('n', 'zc', "<Cmd>lua require('vscode-neovim').call('editor.fold')<CR>", {noremap = true, silent = true})
+keymap('n', 'zC', "<Cmd>lua require('vscode-neovim').call('editor.foldRecursively')<CR>", {noremap = true, silent = true})
+keymap('n', 'zo', "<Cmd>lua require('vscode-neovim').call('editor.unfold')<CR>", {noremap = true, silent = true})
+keymap('n', 'zO', "<Cmd>lua require('vscode-neovim').call('editor.unfoldRecursively')<CR>", {noremap = true, silent = true})
+keymap('n', 'za', "<Cmd>lua require('vscode-neovim').call('editor.toggleFold')<CR>", {noremap = true, silent = true})
 
 vim.cmd [[nnoremap <silent> [ <cmd>lua require('vscode-neovim').call('editor.action.peekDefinition')<cr>]]

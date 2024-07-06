@@ -1,5 +1,6 @@
 return {{
     'vscode-neovim/vscode-multi-cursor.nvim',
+    version = "*",
     event = 'VeryLazy',
     opts = {},
     config = function()

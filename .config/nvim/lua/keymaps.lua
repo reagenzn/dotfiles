@@ -16,8 +16,15 @@ keymap("n", "J", "10j", opts)
 keymap("n", "K", "10k", opts)
 keymap("n", "H", "0", opts)
 keymap("n", "L", "$", opts)
+
+-- ビジュアルモードの選択範囲で検索
 keymap('v', '/', "\"fy/\\V<C-R>f<CR>" ,opts)
 
+
+keymap("v", "J", "10j", opts)
+keymap("v", "K", "10k", opts)
+-- paste 時にレジスタに入れない
+keymap("v", "p", "pgvy", opts)
 
 -- Select all
 keymap("n", "<C-a>", "gg<S-v>G", opts)
