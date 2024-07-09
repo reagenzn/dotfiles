@@ -1,5 +1,4 @@
 #!/bin/bash -eux
-
 echo "Start setup ..."
 
     if [ $(uname) = Darwin ]; then

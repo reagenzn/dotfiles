@@ -14,23 +14,15 @@ set -x PATH  $PYENV_ROOT/bin $PATH
 #peco setting
 set fish_plugins theme peco
 
-function fish_user_key_bindings
-  bind \cw peco_select_history
-end
 
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# vi mode 有効化
-for mode in default insert visual
-    fish_default_key_bindings -M $mode
-end
-fish_vi_key_bindings --no-erase
-set -g fish_escape_delay_ms 100
-bind -M insert -m default jj cancel repaint-mode
-set -g fish_sequence_key_delay_ms 200
+
+
+
 
 #abbr -a
 
@@ -51,8 +43,8 @@ abbr -a hs 'history search'
 abbr -a ths 'thistory search'
 
 #設定ファイルの編集・反映
-abbr -a vc nvim ~/.config/fish/config.fish
+abbr -a ec nvim ~/.config/fish/config.fish
 abbr -a sc source ~/.config/fish/config.fish
 abbr -a edot nvim ~/dotfiles/
-abbr -a reload exit
+abbr -a reload exit $shell
 
