@@ -1,3 +1,2 @@
-fish/functions
-fish/completions
-fish/themes
+.config/fish/completions
+.config/fish/themes

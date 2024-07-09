@@ -3,6 +3,7 @@ set -g theme_display_date yes
 set -g theme_date_format "+%F %H:%M"
 set -g theme_display_git_default_branch yes
 set -g theme_color_scheme dark
+set -g theme_display_vi yes
 
 #path
 set -x PATH $HOME/.nodebrew/current/bin $PATH
@@ -38,7 +39,6 @@ abbr -a gp 'git push'
 abbr -a c 'clear'
 
 #Fish
-
 abbr -a hs 'history search'
 abbr -a ths 'thistory search'
 
