@@ -10,10 +10,6 @@ return {{
             -- If set to true, only multiple cursors will be created without multiple selections
             no_selection = false
         }
-        -- function _NextFindMatch()
-        --     require("vscode-multi-cursor").addSelectionToNextFindMatch()
-        -- end
-
     end
 }, {
     "kylechui/nvim-surround",

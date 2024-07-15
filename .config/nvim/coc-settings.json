@@ -6,6 +6,5 @@
   "suggest.snippetIndicator": " ►",
   "coc.preferences.formatOnType": true,
   "eslint.autoFixOnSave": true,
-  "http.proxy":"172.21.252.1:12080",
-  "https.proxy":"172.21.252.1:12080"
+  "Lua.diagnostics.globals": ["vim"]
 }

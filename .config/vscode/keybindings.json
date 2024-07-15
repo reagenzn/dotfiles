@@ -62,14 +62,19 @@
         "when": "hasSearchResult && searchViewletFocus"
     },
     {
-        "key": "ctrl+j",
-        "command": "workbench.action.quickOpenSelectNext",
-        "when": "inQuickOpen"
-    },
-    {
         "key": "ctrl+k",
         "command": "workbench.action.quickOpenSelectPrevious",
         "when": "inQuickOpen "
+    },
+    {
+        "key": "s s",
+        "command":"workbench.action.splitEditorDown",
+        "when": "!jumpy2.jump-mode && editorTextFocus && neovim.mode == 'normal'"
+    },
+    {
+        "key": "s v",
+        "command":"workbench.action.splitEditorRight",
+        "when": "!jumpy2.jump-mode && editorTextFocus && neovim.mode == 'normal'"
     },
     //editorじゃない時の操作(editorではvscodevimのコマンドが有効になる)
     //tabを閉じる
@@ -86,7 +91,7 @@
     {
         "key": "space p",
         "command": "workbench.action.quickOpen",
-        "when": "!terminalFocus && !editorTextFocus && !editorHasSelection && !editorHasMultipleSelections && !inQuickOpen && !sideBarFocus && !panelFocus && !historyNavigationWidgetFocus"
+        "when": "!textInputFocus && !terminalFocus && !editorTextFocus && !editorHasSelection && !editorHasMultipleSelections && !inQuickOpen && !sideBarFocus && !panelFocus && !historyNavigationWidgetFocus"
     },
     /* -------------------------------------------------------------------------- */
     /*                                  sidebar                                   */
@@ -98,11 +103,6 @@
         "when": "vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
     },
     // サイドバーからの移動
-    {
-        "key": "shift+space l",
-        "command": "workbench.action.focusFirstEditorGroup"
-        // "when": "explorerViewletVisible && explorerViewletFocus && !editorFocus && !inQuickOpen"
-    },
     {
         "key": "Enter",
         "command": "list.toggleExpand",
@@ -273,10 +273,10 @@
         "key": "cmd+9",
         "command": "gitlens.views.commitDetails.focus"
     },
-    {
-        "key": "ctrl+u",
-        "command": "gitlens.showCommitSearch"
-    },
+    // {
+    //     "key": "ctrl+u",
+    //     "command": "gitlens.showCommitSearch"
+    // },
     {
         "key": "ctrl+g",
         "command": "gitlens.gitCommands"
@@ -284,10 +284,6 @@
     {
         "key": "ctrl+h",
         "command": "workbench.action.focusFirstEditorGroup"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.focusSecondEditorGroup"
     },
     {
         "key": "alt+/",
@@ -325,7 +321,7 @@
         "command": "runCommands",
         "when": "listFocus && !inputFocus",
         "args":{
-            "commands":[ 
+            "commands":[
                 {
                     "command": "list.select",
                 },
@@ -371,7 +367,7 @@
         "key": "n",
         "when": "editorTextFocus && neovim.mode != insert",
         "command": "runCommands",
-        "args": { 
+        "args": {
             "commands": [
                 // commands to run in sequence
                 {
@@ -438,16 +434,6 @@
         "key": "ctrl+j",
         "command": "workbench.action.navigateDown",
         "when": "editorTextFocus"
-    },
-    {
-        "key": "s v",
-        "command": "workbench.action.splitEditorRight",
-        "when": "editorTextFocus && neovim.mode == 'normal' && !jumpy2.jump-mode"
-    },
-    {
-        "key": "s s",
-        "command": "workbench.action.splitEditorDown",
-        "when": "editorTextFocus && neovim.mode == 'normal' && !jumpy2.jump-mode"
     },
     {
         "key": "ctrl+f",
@@ -591,12 +577,12 @@
         "command": "jumpy2.toggle",
         "when": "editorTextFocus && neovim.mode == 'normal'"
     },
-    {
-        "args": "<C-d>",
-        "command": "vscode-neovim.send",
-        "key": "ctrl+d",
-        "when": "editorFocus && neovim.init"
-    },
+    // {
+    //     "args": "<C-d>",
+    //     "command": "vscode-neovim.send",
+    //     "key": "ctrl+d",
+    //     "when": "editorFocus && neovim.init"
+    // },
     {
         "key": "cmd+w",
         "command": "-workbench.action.closeActiveEditor"
@@ -685,7 +671,7 @@
         "when": "activeEditor == 'workbench.editor.interactive'"
     },
     {
-        "key": "ctrl+x",
+        "key": "alt+space",
         "command": "workbench.action.toggleAuxiliaryBar"
     },
     {
@@ -755,5 +741,93 @@
     {
         "key": "ctrl+r",
         "command": "-workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-selectNextCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-showNextParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "showPrevParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-showPrevParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "listFocus && !inputFocus && !treestickyScrollFocused"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "inReferenceSearchEditor && neovim.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "showNextParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "-cursorDown",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus || suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "showPrevParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
     }
 ]

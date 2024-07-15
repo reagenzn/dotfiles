@@ -16,6 +16,7 @@ function get_os_type()
     end
 end
 
+
 function get_os_dir()
     local os_type = get_os_type()
     print(os_type)

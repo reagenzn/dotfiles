@@ -56,8 +56,6 @@ keymap("n", "Y", "y$", opts)
 -- <Space>q で強制終了
 keymap("n", "<Space>q", ":<C-u>q!<Return>", opts)
 
--- ESC*2 でハイライトやめる
-keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
 
 -- Insert --
 -- Press jj fa fast to exit insert mode
@@ -80,10 +78,7 @@ keymap("v", "L", "$h", opts)
 keymap("v", "<C-p>", '"0p', opts)
 
 
+-- See `:help telescope.builtin`
 keymap('n', '<Space>e', '<cmd>Fern . -reveal=% -drawer<cr>', { noremap = true, silent = true })
 keymap('n', '<Space>w', '<cmd>update<cr>', { noremap = true })
-keymap('n', '<Space>p', '<cmd>Telescope find_files<cr>' ,{ noremap = true, silent = true })
-
-
--- See `:help telescope.builtin`
 

@@ -15,17 +15,9 @@ set -x PATH  $PYENV_ROOT/bin $PATH
 #peco setting
 set fish_plugins theme peco
 
-
-
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-
-
-
-
-
-#abbr -a
 
 #Git
 abbr -a g 'git'
@@ -37,6 +29,7 @@ abbr -a gp 'git push'
 
 #general
 abbr -a c 'clear'
+abbr -a e 'exit'
 
 #Fish
 abbr -a hs 'history search'
@@ -47,4 +40,3 @@ abbr -a ec nvim ~/.config/fish/config.fish
 abbr -a sc source ~/.config/fish/config.fish
 abbr -a edot nvim ~/dotfiles/
 abbr -a reload exit $shell
-

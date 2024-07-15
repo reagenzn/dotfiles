@@ -45,7 +45,7 @@ keymap("n", "<C-f>", "/", opts)
 keymap("n", "Y", "y$", opts)
 
 -- ESC*2 でハイライトやめる
-keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
+-- keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)
 
 -- コンマの後に自動的にスペースを挿入
 keymap("i", ",", ",<Space>", opts)

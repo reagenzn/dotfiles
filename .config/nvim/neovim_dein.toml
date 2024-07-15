@@ -1,9 +1,3 @@
-# vim-code-dark (VS Code風カラーテーマ)
-[[plugins]]
-repo = 'tomasiser/vim-code-dark'
-hook_add = '''
-    colorscheme codedark
-'''
 
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
@@ -38,6 +32,7 @@ hook_add = '''
 repo = 'tomtom/tcomment_vim'
 hook_add = '''
     vnoremap <leader>c :TComment<CR>
+    nnoremap <leader>c :TComment<CR>
 '''
 
 # gitgutter
@@ -101,8 +96,8 @@ repo = 'vim-jp/vimdoc-ja'
 repo = 'nvim-telescope/telescope.nvim'
 on_cmd = ['Telescope']
 hook_add = '''
-    nnoremap <leader>hf <cmd>Telescope find_files<cr>
-    nnoremap <leader>hg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>p <cmd>Telescope find_files find_command=rg,--files,--hidden,--glob,!*.git <cr>
+    nnoremap <leader>hh <cmd>Telescope live_grep <cr>
     nnoremap <leader>hb <cmd>Telescope buffers<cr>
     nnoremap <leader>; <cmd>Telescope resume<cr>
 '''
@@ -113,6 +108,9 @@ hook_add = '''
 if has('win32')
   let g:copilot_proxy = "172.21.252.1:12080"
 end
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
 '''
 
 [[plugins]]

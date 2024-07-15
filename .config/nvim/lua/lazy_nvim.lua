@@ -18,6 +18,10 @@ if vim.g.vscode == 1 then
   plugins = require('vscode_plugins')
 else
   plugins = require('neovim_plugins')
-end  
+end
 
 require('lazy').setup(plugins)
+
+if vim.g.vscode ~= 1 then
+  vim.cmd([[colorscheme solarized-osaka]])
+end
