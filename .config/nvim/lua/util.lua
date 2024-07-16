@@ -1,5 +1,5 @@
 -- os recognize
-function get_os_type()
+function _G.get_os_type()
     -- print(vim.fn.has('win32'))
     -- print(vim.fn.has('mac'))
 
@@ -17,7 +17,7 @@ function get_os_type()
 end
 
 
-function get_os_dir()
+function _G.get_os_dir()
     local os_type = get_os_type()
     print(os_type)
 
@@ -32,5 +32,3 @@ function get_os_dir()
     return dir_name
 
 end
-_G["get_os_type"] = get_os_type
-_G["get_os_dir"] = get_os_dir
