@@ -279,7 +279,7 @@
     // },
     {
         "key": "ctrl+g",
-        "command": "gitlens.gitCommands"
+        "command": "lazygit.openLazygit"
     },
     {
         "key": "ctrl+h",
@@ -450,11 +450,6 @@
         "command": "workbench.action.chat.startVoiceChat",
         "when": "editorTextFocus && neovim.mode == 'normal'"
     },
-    // {
-    //     "key": "; ;",
-    //     "command": "editor.action.triggerSuggest",
-    //     "when": "editorTextFocus && neovim.mode == 'insert'"
-    // },
     {
         "key": "ctrl+w up",
         "command": "-workbench.action.navigateUp",
@@ -639,17 +634,12 @@
     {
         "key": "shift+enter",
         "command": "workbench.action.terminal.toggleTerminal",
-        "when": "terminal.active"
+        "when": "terminal.active && !view.phind-left-panel-webview.visible"
     },
     {
         "key": "ctrl+`",
         "command": "-workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "-workbench.action.chat.newChat",
-        "when": "chatIsEnabled && inChat"
     },
     {
         "key": "ctrl+q",
@@ -757,11 +747,6 @@
     },
     {
         "key": "ctrl+n",
-        "command": "-selectNextSuggestion",
-        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
-    },
-    {
-        "key": "ctrl+n",
         "command": "-showNextParameterHint",
         "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
     },
@@ -769,16 +754,6 @@
         "key": "ctrl+k",
         "command": "selectPrevCodeAction",
         "when": "codeActionMenuVisible"
-    },
-    {
-        "key": "ctrl+p",
-        "command": "-selectPrevCodeAction",
-        "when": "codeActionMenuVisible"
-    },
-    {
-        "key": "ctrl+p",
-        "command": "-selectPrevSuggestion",
-        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
     },
     {
         "key": "ctrl+k",
