@@ -1,10 +1,13 @@
 -- local keymap = vim.keymap
 local keymap = vim.api.nvim_set_keymap
 
+
 local opts = {
     noremap = true,
     silent = true
 }
+
+
 
 keymap("n", "<C-m>", "<Cmd>lua require('vscode-multi-cursor').addSelectionToNextFindMatch()<CR>", opts)
 keymap("x", "<C-m>", "<Cmd>lua require('vscode-multi-cursor').addSelectionToNextFindMatch()<CR>", opts)

@@ -1,7 +1,4 @@
 [include]
   path=./.git-aliases
-
-
-[user]
   path=./.git-user
   

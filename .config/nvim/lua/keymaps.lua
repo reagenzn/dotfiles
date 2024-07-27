@@ -5,8 +5,6 @@ local keymap = vim.api.nvim_set_keymap
 
 
 
-
--- Normal --
 -- 保存用のコマンド
 keymap("n", "<C-s>", ":w<CR>", opts)
 
@@ -20,9 +18,9 @@ keymap("n", "L", "$", opts)
 -- ビジュアルモードの選択範囲で検索
 keymap('v', '/', "\"fy/\\V<C-R>f<CR>" ,opts)
 
-
 keymap("v", "J", "10j", opts)
 keymap("v", "K", "10k", opts)
+
 -- paste 時にレジスタに入れない
 keymap("v", "p", "pgvy", opts)
 
@@ -40,6 +38,9 @@ keymap("n", ";", ":", opts)
 
 -- 検索
 keymap("n", "<C-f>", "/", opts)
+
+-- redo with U
+keymap("n", "U", "<C-r>", opts)
 
 -- 行末までのヤンクにする
 keymap("n", "Y", "y$", opts)
