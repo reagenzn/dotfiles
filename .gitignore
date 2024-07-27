@@ -2,5 +2,7 @@
 .config/fish/themes
 .config/fish/fish_variables
 
+*.swp
+
 .DS_Store
 */.DS_Store
