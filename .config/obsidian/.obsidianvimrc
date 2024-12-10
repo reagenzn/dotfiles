@@ -5,63 +5,63 @@ noremap J 5j
 noremap K 5k
 set clipboard=unnamed
 exmap back obcommand app:go-back
-nmap <C-o> :back
+nmap <C-o> :back<CR>
 exmap forward obcommand app:go-forward
-nmap <C-i> :forward
+nmap <C-i> :forward<CR>
 exmap togglefold obcommand editor:toggle-fold
-nmap zo :togglefold
-nmap zc :togglefold
-nmap za :togglefold
+nmap zo :togglefold<CR>
+nmap zc :togglefold<CR>
+nmap za :togglefold<CR>
 
 exmap jumpanywhere obcommand mrj-jump-to-link:activate-jump-to-anywhere
-nmap f :jumpanywhere
+nmap f :jumpanywhere<CR>
 
 exmap jumpToLink obcommand mrj-jump-to-link:activate-jump-to-link
-nmap <Space>f :jumpToLink
+nmap <Space>f :jumpToLink<CR>
 
 exmap unfoldall obcommand editor:unfold-all
-nmap zR :unfoldall
+nmap zR :unfoldall<CR>
 
 exmap foldall obcommand editor:fold-all
-nmap zM :foldall
+nmap zM :foldall<CR>
 
 exmap splitv obcommand workspace:split-vertical
-nmap sv :splitv
+nmap sv :splitv<CR>
 
 exmap splith obcommand workspace:split-horizontal
-nmap ss :splith
+nmap ss :splith<CR>
 
 
 exmap tabnext obcommand cycle-through-panes:cycle-through-panes
-nmap gt :tabnext
+nmap gt :tabnext<CR>
 
 exmap tabprev obcommand cycle-through-panes:cycle-through-panes-reverse
-nmap gT :tabprev
+nmap gT :tabprev<CR>
 
 
 exmap focusRight obcommand editor:focus-right
-nmap <C-l> :focusRight
+nmap <C-l> :focusRight<CR>
 
 exmap focusLeft obcommand editor:focus-left
-nmap <C-h> :focusLeft
+nmap <C-h> :focusLeft<CR>
 
 exmap focusTop obcommand editor:focus-top
-nmap <C-k> :focusTop
+nmap <C-k> :focusTop<CR>
 
 exmap focusBottom obcommand editor:focus-bottom
-nmap <C-j> :focusBottom
+nmap <C-j> :focusBottom<CR>
 
 exmap insertCallout obcommand editor:insert-callout
-nmap <C-i> :insertCallout
+nmap <C-i> :insertCallout<CR>
 
 exmap tableRowDelete obcommand editor:table-row-delete
-nmap <C-d> :tableRowDelete
+nmap <C-d> :tableRowDelete<CR>
 
 exmap openSearch obcommand editor:open-search
-nmap <C-f> :openSearch
+nmap <C-f> :openSearch<CR>
 
 unmap <Space>
-exmap test obcommand workspace:close
+exmap test obcommand workspace:close<CR>
 nmap <Space>q :test<CR>
 
 exmap fuzzyFileSearch obcommand obsidian-another-quick-switcher:search-command_file-name-fuzzy-search
@@ -71,38 +71,38 @@ exmap backLink obcommand obsidian-another-quick-switcher:backlink
 nmap <Space>o :backLink<CR>
 
 exmap nextTab obcommand workspace:next-tab
-nmap <Space>k :nextTab
+nmap <Space>k :nextTab<CR>
 
 exmap previousTab obcommand workspace:previous-tab
-nmap <Space>j :previousTab
+nmap <Space>j :previousTab<CR>
 
 
 exmap openDailyNote obcommand daily-notes
-nmap <Space>d :openDailyNote
+nmap <Space>d :openDailyNote<CR>
 
 exmap openPrevDailyNote obcommand daily-notes:goto-prev
-nmap <Space>n :openPrevDailyNote
+nmap <Space>n :openPrevDailyNote<CR>
 
 exmap openNextDailyNote obcommand daily-notes:goto-next
-nmap <Space>m :openNextDailyNote
+nmap <Space>m :openNextDailyNote<CR>
 
 exmap showSuggestions obcommand various-complements:show-suggestions
-nmap <Space>; :showSuggestions
+nmap <Space>; :showSuggestions<CR>
 
 exmap insertCurrentDate obcommand insert-current-date
-nmap <Space>x :insertCurrentDate
+nmap <Space>x :insertCurrentDate<CR>
 
 exmap addProperty obcommand markdown:add-metadata-property
-nmap <Space>a :addProperty
+nmap <Space>a :addProperty<CR>
 
 " exmap lintFile obcommand obsidian-linter:lint-file
-" nmap <Space>f :lintFile
+" nmap <Space>f :lintFile<CR>
 
 exmap showCalendar obcommand calendar:show-calendar-view
-nmap <Space>c :showCalendar
+nmap <Space>c :showCalendar<CR>
 
 exmap renameHeading obcommand editor:rename-heading
-nmap <Space>r :renameHeading
+nmap <Space>r :renameHeading<CR>
 
 
 exmap surround_wiki surround [[ ]]
