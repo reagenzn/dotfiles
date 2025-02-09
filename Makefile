@@ -1,6 +1,6 @@
 
-.PHONY: link
-link: 
+.errorPHONY: link
+link:
 	./scripts/link.sh
 
 .PHONY: setup-mac

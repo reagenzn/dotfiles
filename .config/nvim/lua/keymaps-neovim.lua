@@ -8,15 +8,7 @@ local keymap = vim.api.nvim_set_keymap
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
--- Mode
---   normal_mode = 'n',
---   insert_mode = 'i',
---   visual_mode = 'v',
---   visual_block_mode = 'x',
---   term_mode = 't',
---   command_mode = 'c',
-
+vim.api.nvim_set_var("mapleader", " ")
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -77,8 +69,4 @@ keymap("v", "L", "$h", opts)
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
 
-
--- See `:help telescope.builtin`
 keymap('n', '<Space>e', '<cmd>Fern . -reveal=% -drawer<cr>', { noremap = true, silent = true })
-keymap('n', '<Space>w', '<cmd>update<cr>', { noremap = true })
-

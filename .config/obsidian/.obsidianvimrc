@@ -104,6 +104,9 @@ nmap <Space>c :showCalendar<CR>
 exmap renameHeading obcommand editor:rename-heading
 nmap <Space>r :renameHeading<CR>
 
+exmap openFileExplorer obcommand file-explorer:open
+nmap <Space>e :openFileExplorer<CR>
+
 
 exmap surround_wiki surround [[ ]]
 exmap surround_double_quotes surround " "
@@ -115,23 +118,28 @@ exmap surround_brackets surround ( )
 exmap surround_square_brackets surround [ ]
 exmap surround_curly_brackets surround { }
 
+exmap focusTitle obcommand focus-title:focus-title
+map <Space>t :focusTitle<CR>
+map gi :focusTitle<CR>
+
 " NOTE: must use 'map' and not 'nmap'
 map [[ :surround_wiki
 nunmap s
 vunmap s
-map s" :surround_double_quotes
-map s' :surround_single_quotes
-map s` :surround_backticks
-map sb :surround_brackets
-map sw :surround_wiki
-map s( :surround_brackets
-map s) :surround_brackets
-map s~ :surround_tilda
-map s[ :surround_square_brackets
-map s] :surround_square_brackets
-map s{ :surround_curly_brackets
-map s} :surround_curly_brackets
-map su :surround_underline
+map s" :surround_double_quotes<CR>
+map s' :surround_single_quotes<CR>
+map s` :surround_backticks<CR>
+map sb :surround_brackets<CR>
+map sw :surround_wiki<CR>
+map s( :surround_brackets<CR>
+map s) :surround_brackets<CR>
+map s~ :surround_tilda<CR>
+map s[ :surround_square_brackets<CR>
+map s] :surround_square_brackets<CR>
+map s{ :surround_curly_brackets<CR>
+map s} :surround_curly_brackets<CR>
+map su :surround_und perline<CR>
 
 " Maps pasteinto to Ctr-p
-map sa :pasteinto
+map sa :pasteinto<CR>
+

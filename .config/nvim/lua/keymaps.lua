@@ -8,7 +8,6 @@ local keymap = vim.api.nvim_set_keymap
 -- 保存用のコマンド
 keymap("n", "<C-s>", ":w<CR>", opts)
 
-
 -- Moving --
 keymap("n", "J", "10j", opts)
 keymap("n", "K", "10k", opts)
@@ -62,5 +61,3 @@ keymap("v", "L", "$h", opts)
 
 -- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
-
-

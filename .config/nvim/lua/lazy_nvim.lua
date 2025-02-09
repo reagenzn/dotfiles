@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins
 
-
 if vim.g.vscode == 1 then
   plugins = require('vscode_plugins')
 else

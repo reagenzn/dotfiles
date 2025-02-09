@@ -2,3 +2,5 @@
   path=./.git-aliases
   path=./.git-user
   
+[pull]
+	rebase = false
