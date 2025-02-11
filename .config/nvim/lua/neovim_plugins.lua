@@ -1,18 +1,21 @@
-return { {
-  'nvim-lualine/lualine.nvim',
-  config = function()
-    require('lualine').setup()
-  end
-}, {
-  'akinsho/toggleterm.nvim',
-  version = "*",
-  config = true
-}, {
-  'lewis6991/gitsigns.nvim',
-  config = function()
-    require('gitsigns').setup()
-  end
-},
+return {
+  {
+    'nvim-lualine/lualine.nvim',
+    config = function()
+      require('lualine').setup()
+    end
+  },
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    config = true
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
   {
     "craftzdog/solarized-osaka.nvim",
   },
@@ -21,12 +24,6 @@ return { {
   },
   {
     "tpope/vim-surround",
-  },
-  {
-    "tomtom/tcomment_vim",
-    key = {
-      { "<Space>c", "<Plug>TComment", mode = { "n", "v" }, silent = true },
-    }
   },
   {
     "hrsh7th/nvim-cmp",
@@ -244,7 +241,6 @@ return { {
       vim.g.copilot_no_tab_map = true
 
       local keymap = vim.keymap.set
-      -- https://github.com/orgs/community/discussions/29817#discussioncomment-4217615
       keymap(
         "i",
         "<Tab>",
@@ -282,7 +278,6 @@ return { {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
-    -- stylua: ignore
     keys = {
       { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
       { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
@@ -297,20 +292,32 @@ return { {
     highlight = {
       enable = true,
     },
-  }, {
-  "alvan/vim-closetag",
-  init = function()
-    vim.g.closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.tsx,*.js,*.ts,*.xml"
-    vim.g.closetag_xhtml_filenames = '*.jsx,*.tsx,*.vue'
-    vim.g.closetag_filetypes = 'html'
-    vim.g.closetag_xhtml_filetypes = 'jsx,tsx,javascript.jsx,typescript.tsx,vue'
-    vim.g.closetag_emptyTags_caseSensitive = 1
-    vim.g.closetag_shortcut = '>'
-  end,
-},
+  },
+  {
+    "alvan/vim-closetag",
+    init = function()
+      vim.g.closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.tsx,*.js,*.ts,*.xml"
+      vim.g.closetag_xhtml_filenames = '*.jsx,*.tsx,*.vue'
+      vim.g.closetag_filetypes = 'html'
+      vim.g.closetag_xhtml_filetypes = 'jsx,tsx,javascript.jsx,typescript.tsx,vue'
+      vim.g.closetag_emptyTags_caseSensitive = 1
+      vim.g.closetag_shortcut = '>'
+    end,
+  },
   {
     'numToStr/Comment.nvim',
     opts = {
     }
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    opts = {
+      bind = true,
+      handler_opts = {
+        border = "rounded"
+      }
+    },
+    config = function(_, opts) require 'lsp_signature'.setup(opts) end
   }
 }
