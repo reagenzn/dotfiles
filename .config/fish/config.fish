@@ -42,3 +42,6 @@ abbr -a edot nvim ~/dotfiles/
 abbr -a reload exit $shell
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/bin
