@@ -7,6 +7,8 @@ set -g theme_display_vi yes
 
 #path
 set -x PATH $HOME/.nodebrew/current/bin $PATH
+set PATH /opt/homebrew/bin $PATH
+
 #
 set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH  $PYENV_ROOT/bin $PATH
