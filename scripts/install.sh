@@ -17,6 +17,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   chsh -s "$(which fish)"
   
   # Install volta
-  curl https://get.volta.sh | bash
+  if ! which volta > /dev/null 2>&1; then
+    curl https://get.volta.sh | bash
+  fi
+
+  # Install tpm
+  if [ ! -d "~/.tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  fi
 
 fi
