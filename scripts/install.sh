@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Install fish shell
 if [[ "$OSTYPE" == "darwin"* ]]; then
 
   if ! whick fish > /dev/null 2>&1; then
@@ -16,5 +15,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   echo 'Changing default shell to fish'
   echo "$(which fish)" | sudo tee -a /etc/shells
   chsh -s "$(which fish)"
+  
+  # Install volta
+  curl https://get.volta.sh | bash
 
 fi
