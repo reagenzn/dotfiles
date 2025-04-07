@@ -123,8 +123,8 @@
         "command": "workbench.view.search.focus"
     },
     {
-        "key": "shift+space d",
-        "command": "workbench.view.search.toggleVisibility"
+        "key": "ctrl+x",
+        "command": "workbench.view.search.focus"
     },
     //エクスプローラー間移動
     {
@@ -155,27 +155,11 @@
         "command": "revealFileInOS",
         "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
     },
-    //リネーム
-    {
-        "key": "r",
-        "command": "renameFile",
-        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-    },
     //削除
     {
         "key": "d",
         "command": "deleteFile",
         "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-    },
-    // 新規ファイル作成
-    {
-        "key": "shift+cmd+n",
-        "command": "explorer.newFile"
-    },
-    // 新規フォルダ作成
-    {
-        "key": "shift+cmd+m",
-        "command": "explorer.newFolder"
     },
     // dでファイルを削除
     {
