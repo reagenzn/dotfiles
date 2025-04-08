@@ -33,7 +33,7 @@ keymap("n", "x", '"_x', opts)
 keymap("n", "dw", 'vb"_d', opts)
 
 -- ;でコマンド入力( ;と:を入れ替)
-keymap("n", ";", ":", opts)
+-- keymap("n", ";", ":", opts)
 
 -- 検索
 keymap("n", "<C-f>", "/", opts)

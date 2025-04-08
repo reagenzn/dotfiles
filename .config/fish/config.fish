@@ -12,7 +12,14 @@ set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH  $PYENV_ROOT/bin $PATH
 # pyenv init - | source
 
-#peco setting
+# disable display time
+set -U theme_display_date no
+set -U theme_displa_cmd_duration no
+
+
+bind yy fish_clipboard_copy
+bind Y fish_clipboard_copy
+bind p fish_clipboard_paste
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
