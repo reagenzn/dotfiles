@@ -16,7 +16,7 @@ return {
     {
         "kylechui/nvim-surround",
         version = "*", -- use for stability; omit to use `main` branch for the latest features
-        event = "verylazy",
+        event = "VeryLazy",
         config = function()
             require("nvim-surround").setup({
                 -- configuration here, or leave empty to use defaults
@@ -25,7 +25,7 @@ return {
     },
     {
         "folke/flash.nvim",
-        event = "verylazy",
+        event = "VeryLazy",
         -- configuration options for flash plugin
         opts = {
             modes = {
