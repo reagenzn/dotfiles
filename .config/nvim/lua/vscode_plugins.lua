@@ -24,6 +24,13 @@ return {
         end
     },
     {
+        "nvim-treesitter/nvim-treesitter",
+        ensure_installed = 'maintained',
+        highlight = {
+          enable = true,
+        },
+    },
+    {
         "folke/flash.nvim",
         event = "VeryLazy",
         -- configuration options for flash plugin
@@ -40,7 +47,7 @@ return {
             { "F",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
             { "f",     mode = "n",               function() require("flash").remote() end,            desc = "Remote Flash" },
             { "R",     mode = { "n", "x", "o" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-            { "G", mode = { "n" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+            { "Q", mode = { "n" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
         },
     },
 }
