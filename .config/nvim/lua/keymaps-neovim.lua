@@ -67,6 +67,7 @@ keymap("v", "v", "$h", opts)
 keymap("v", "L", "$h", opts)
 
 -- 0番レジスタを使いやすくした
+-- 0番レジスタを使いやすくした
 keymap("v", "<C-p>", '"0p', opts)
 
 keymap('n', '<Space>e', '<cmd>Fern . -reveal=% -drawer<cr>', { noremap = true, silent = true })
