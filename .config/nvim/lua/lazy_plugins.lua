@@ -293,55 +293,7 @@ return {{
   init = function()
       vim.g.rainbow_active = 1
   end
-}, {
-  "folke/flash.nvim",
-  event = "VeryLazy",
-  cond = vim.g.vscode ~= 1,
-  opts = {},
-  keys = {{
-      "s",
-      mode = {"n", "x", "o"},
-      function()
-          require("flash").jump()
-      end,
-      desc = "Flash"
-  }, {
-      "S",
-      mode = {"n", "x", "o"},
-      function()
-          require("flash").treesitter()
-      end,
-      desc = "Flash Treesitter"
-  }, {
-      "r",
-      mode = "o",
-      function()
-          require("flash").remote()
-      end,
-      desc = "Remote Flash"
-  }, {
-      "R",
-      mode = {"o", "x"},
-      function()
-          require("flash").treesitter_search()
-      end,
-      desc = "Treesitter Search"
-  }, {
-      "<c-s>",
-      mode = {"c"},
-      function()
-          require("flash").toggle()
-      end,
-      desc = "Toggle Flash Search"
-  }}
-}, {
-  "nvim-treesitter/nvim-treesitter",
-  cond = vim.g.vscode ~= 1,
-  ensure_installed = 'maintained',
-  highlight = {
-      enable = true
-  }
-}, {
+},  {
   "alvan/vim-closetag",
   cond = vim.g.vscode ~= 1,
   init = function()
@@ -356,20 +308,7 @@ return {{
   'numToStr/Comment.nvim',
   cond = vim.g.vscode ~= 1,
   opts = {}
-}, {
-  "ray-x/lsp_signature.nvim",
-  event = "InsertEnter",
-  cond = vim.g.vscode ~= 1,
-  opts = {
-      bind = true,
-      handler_opts = {
-          border = "rounded"
-      }
-  },
-  config = function(_, opts)
-      require'lsp_signature'.setup(opts)
-  end
-},
+}, 
 -- for vscode
 {
   'vscode-neovim/vscode-multi-cursor.nvim',
@@ -395,7 +334,22 @@ return {{
           -- configuration here, or leave empty to use defaults
       })
   end
-}, {
+}, 
+-- common plugins
+{
+  "ray-x/lsp_signature.nvim",
+  event = "InsertEnter",
+  opts = {
+      bind = true,
+      handler_opts = {
+          border = "rounded"
+      }
+  },
+  config = function(_, opts)
+      require'lsp_signature'.setup(opts)
+  end
+},
+{
   "nvim-treesitter/nvim-treesitter",
   ensure_installed = 'maintained',
   highlight = {
@@ -404,7 +358,6 @@ return {{
 }, {
   "folke/flash.nvim",
   event = "VeryLazy",
-  cond = vim.g.vscode == 1,
   -- configuration options for flash plugin
   opts = {
       modes = {
