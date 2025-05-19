@@ -1,5 +1,11 @@
 {
   "Lua.diagnostics.globals": [
     "vim"
-  ]
+  ],
+  "terminal.integrated.environmentChangesIndicator": "on",
+  "terminal.integrated.shellIntegration.showCommandGuide": true,
+  "terminal.integrated.shellIntegration.environmentReporting": true,
+  "terminal.integrated.suggest.enabled": true,
+  "python.terminal.shellIntegration.enabled": true,
+  "terminal.integrated.shellIntegration.enabled": true
 }

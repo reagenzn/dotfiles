@@ -801,5 +801,13 @@
     "key": "shift+cmd+r",
     "command": "github.copilot.chat.review.changes",
     "when": "github.copilot.chat.reviewDiff.enabled && !github.copilot.chat.review.sourceControlProgress && scmProvider == 'git' && scmProviderRootUri in 'github.copilot.chat.reviewDiff.enabledRootUris'"
+  },
+  {
+    "key": "cmd+3",
+    "command": "workbench.action.toggleCompactAuxiliaryWindow"
+  },
+  {
+    "key": "cmd+3",
+    "command": "-workbench.action.focusThirdEditorGroup"
   }
 ]
