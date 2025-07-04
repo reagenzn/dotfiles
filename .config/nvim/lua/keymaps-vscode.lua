@@ -26,6 +26,7 @@ keymap('n', 'za', "<Cmd>lua require('vscode-neovim').call('editor.toggleFold')<C
 keymap('n', 'zA', "<Cmd>lua require('vscode-neovim').call('editor.toggleFoldRecursively')<CR>", opts)
 
 keymap('n', '[', "<Cmd>lua require('vscode-neovim').call('editor.action.peekDefinition')<CR>", opts)
+keymap('n', ']', "<Cmd>lua require('vscode-neovim').call('editor.action.goToTypeDefinition')<CR>", opts)
 
 -- ESC*2 でハイライトやめる
 keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Return>", opts)

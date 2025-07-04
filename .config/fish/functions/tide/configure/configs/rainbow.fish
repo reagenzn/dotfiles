@@ -38,7 +38,7 @@ tide_git_color_staged 000000
 tide_git_color_stash 000000
 tide_git_color_untracked 000000
 tide_git_color_upstream 000000
-tide_git_truncation_length 24
+tide_git_truncation_length 50
 tide_git_truncation_strategy
 tide_go_bg_color 00ACD7
 tide_go_color 000000

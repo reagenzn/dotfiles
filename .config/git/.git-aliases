@@ -14,8 +14,8 @@
     coali    = commit --allow-empty -m \"initial commit\"
     coam     = commit --amend -v
     coamn    = commit --amend --no-edit
-    copy     = !"git branch --show-current | head -c -1 | clip"
-    copyp    = !"fs=\"$( git log --oneline $1 -2 --pretty='format:%h' | sed -n '2p' )\"; echo ${fs}| clip ;echo "previous commit copied :""
+    copy     = !"git branch --show-current | head -c -1 | pbcopy"
+    copyp    = !"fs=\"$( git log --oneline $1 -2 --pretty='format:%h' | sed -n '2p' )\"; echo ${fs}| pbcopy ;echo "previous commit copied :""
     cp       = cherry-pick
     d        = diff --histogram -b
     dc       = !"mkdir diffs; git dn $1 | while IFS= read f; do mkdir -p "diffs/$(dirname "${f}")"; cp "${f}" "diffs/${f}"; done; exit;"
