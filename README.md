@@ -11,8 +11,13 @@ This guide outlines the steps to set up your development environment on macOS af
     *   This command automates the initial software installation.
     *   It first ensures Homebrew (a package manager for macOS) is installed.
     *   Then, it uses Homebrew to install a collection of command-line tools and GUI applications defined in `.config/mac/Brewfile`. Key installations include:
-        *   CLI Tools: `ansible`, `curl`, `fish` (shell), `fzf` (fuzzy finder), `gh` (GitHub CLI), `neovim` (text editor), `tmux` (terminal multiplexer), `tree`, `wget`, `lazygit`.
+        *   CLI Tools: `ansible`, `curl`, `fish` (shell), `fzf` (fuzzy finder), `gh` (GitHub CLI), `neovim` (text editor), `pyenv` (Python version manager), `tmux` (terminal multiplexer), `tree`, `wget`, `lazygit`.
         *   GUI Applications: `alt-tab` (window switcher), `font-hack-nerd-font` (font), `rectangle` (window manager).
+    *   Automatically sets up Python environment:
+        *   Installs Python 3.11.13 via pyenv
+        *   Sets it as the global default Python version
+        *   Installs the `pynvim` module for Neovim Python support
+    *   Configures fish shell to work with pyenv
     *   Execute the command:
         ```bash
         make setup-mac
@@ -57,6 +62,26 @@ This guide outlines the steps to set up your development environment on macOS af
         *   Alacritty
         *   Visual Studio Code (VSCode)
         *   Raycast
+
+## Additional Commands
+
+The following individual commands are available for specific setup tasks:
+
+*   **`make setup-python`**
+    *   Sets up Python environment only
+    *   Installs Python 3.11.13 via pyenv and sets as global default
+    *   Installs pynvim module for Neovim support
+
+*   **`make setup-fish`**
+    *   Configures fish shell only
+    *   Adds pyenv configuration to fish config file
+    *   Sets up PATH and initialization for pyenv in fish
+
+*   **`make link`**
+    *   Creates symbolic links for configuration files only
+
+*   **`make install`**
+    *   Installs additional tools and plugins (fish plugins, volta, tpm)
 
 7.  **Export/Import Application Settings**
     *   These are manual steps for specific application settings:

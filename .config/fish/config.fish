@@ -51,4 +51,6 @@ set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 # Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/bin
+set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/binset -gx PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+pyenv init - | source
