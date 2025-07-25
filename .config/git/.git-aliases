@@ -14,7 +14,7 @@
     coali    = commit --allow-empty -m \"initial commit\"
     coam     = commit --amend -v
     coamn    = commit --amend --no-edit
-    copy     = !"git branch --show-current | head -c -1 | pbcopy"
+    copy     = !"git branch --show-current | tr -d '\\n' | pbcopy"
     copyp    = !"fs=\"$( git log --oneline $1 -2 --pretty='format:%h' | sed -n '2p' )\"; echo ${fs}| pbcopy ;echo "previous commit copied :""
     cp       = cherry-pick
     d        = diff --histogram -b
