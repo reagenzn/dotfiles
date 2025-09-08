@@ -47,10 +47,23 @@ abbr -a sc source ~/.config/fish/config.fish
 abbr -a edot nvim ~/dotfiles/
 abbr -a tsc tmux source ~/.tmux.conf
 abbr -a reload exit $shell
+abbr -a ta tmux attach -t
+abbr -a tl tmux list-sessions
+abbr -a spt setup-parralel-tasks
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
 
-# Added by LM Studio CLI (lms)
+# Added by LM Studio CI (lms)
 set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/binset -gx PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
 pyenv init - | source
+set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/bin
+
+# parallel-tasks setup.sh用の設定
+abbr -a pt-setup '/Users/fukazawanatsuki/parallel-tasks/setup.sh'
+
+# parallel-tasksディレクトリをPATHに追加
+set -gx PATH $PATH /Users/fukazawanatsuki/parallel-tasks
+
+# ローカルのbinディレクトリをPATHに追加（シンボリックリンク用）
+set -gx PATH $PATH $HOME/.local/binabbr -a agent-send /Users/fukazawanatsuki/parallel-tasks/agent-send.sh
