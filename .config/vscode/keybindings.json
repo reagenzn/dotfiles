@@ -66,16 +66,16 @@
     "command": "workbench.action.quickOpenSelectPrevious",
     "when": "inQuickOpen "
   },
-  {
-    "key": "s s",
-    "command": "workbench.action.splitEditorDown",
-    "when": "!jumpy2.jump-mode && editorTextFocus && neovim.mode == 'normal'"
-  },
-  {
-    "key": "s v",
-    "command": "workbench.action.splitEditorRight",
-    "when": "!jumpy2.jump-mode && editorTextFocus && neovim.mode == 'normal'"
-  },
+  // {
+  //   "key": "s s",
+  //   "command": "workbench.action.splitEditorDown",
+  //   "when": "!jumpy2.jump-mode && editorTextFocus && neovim.mode == 'normal'"
+  // },
+  // {
+  //   "key": "s v",
+  //   "command": "workbench.action.splitEditorRight",
+  //   "when": "!jumpy2.jump-mode && editorTextFocus && neovim.mode == 'normal'"
+  // },
   //editorじゃない時の操作(editorではvscodevimのコマンドが有効になる)
   //tabを閉じる
   {

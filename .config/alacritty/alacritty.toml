@@ -1,5 +1,5 @@
 [terminal.shell]
-program = "/opt/homebrew/bin/fish"
+program = "/bin/zsh"
 
 [window]
 opacity = 1.0

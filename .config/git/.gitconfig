@@ -13,3 +13,5 @@
 	required = true
 [core]
 	editor = nvim
+[user]
+	name = reagenzn

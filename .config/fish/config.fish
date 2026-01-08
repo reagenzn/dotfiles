@@ -56,14 +56,21 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 # Added by LM Studio CI (lms)
 set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/binset -gx PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
-pyenv init - | source
+# pyenv init - | source. . 
 set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/bin
 
 # parallel-tasks setup.sh用の設定
 abbr -a pt-setup '/Users/fukazawanatsuki/parallel-tasks/setup.sh'
 
-# parallel-tasksディレクトリをPATHに追加
+# parallel-tasksディレクトリPATHに追加
 set -gx PATH $PATH /Users/fukazawanatsuki/parallel-tasks
 
-# ローカルのbinディレクトリをPATHに追加（シンボリックリンク用）
-set -gx PATH $PATH $HOME/.local/binabbr -a agent-send /Users/fukazawanatsuki/parallel-tasks/agent-send.sh
+# ローカルのbindディレクトリをPATHに追加（シンボリックリンク用）
+# set -gx PATH $PATH $HOME/.local/binabbr -a agent-send /Users/fukazawanatsuki/parallel-tasks/agent-send.sh
+
+abbr -a qs 'cd ~/forStudy/Quartz && npx quartz sync'
+
+
+
+# Added by Antigravity
+fish_add_path /Users/fukazawanatsuki/.antigravity/antigravity/bin
