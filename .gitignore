@@ -4,6 +4,7 @@
 .config/fish/functions
 .config/fish/fish_variables
 .config/fish/fish-ai.ini
+.config/.copilot/session-state
 
 *.swp
 
