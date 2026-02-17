@@ -44,16 +44,19 @@ Git worktree操作を安全かつ効率的に管理するスキル。
 | `git wrm <branch>` | `git gtr rm` |
 | `git wc` | `git gtr clean --merged` |
 
-## worktree作成時の自動処理（必ず実行すること）
+## worktree作成時のポートセットアップ
 
-worktreeを `git gtr new` で作成した後、**確認なしで自動的に**以下のすべてを実行すること:
+**重要: `git gtr new` を実行すると、`.gtrconfig` の `postCreate` hookにより `claude -p` が自動起動してこのセクションの処理を実行する。そのため、対話的セッションで `git gtr new` を実行した場合、ポートセットアップを手動で行う必要はない。hookが自動で処理する。**
+
+以下は `postCreate` hookから `claude -p` で呼び出された場合の処理手順。
+planモードに入らず、ユーザーへの確認なしで、すべてのステップを即座に実行すること。
 
 ### Step 1: ポート分離スクリプトの実行
 
-worktreeのパスを引数にしてスクリプトを実行する:
+カレントディレクトリ（= worktreeのルート）を引数にしてスクリプトを実行する:
 
 ```bash
-~/.claude/skills/gwt/worktree-port-setup.sh "$(git gtr go <branch>)"
+~/.claude/skills/gwt/worktree-port-setup.sh .
 ```
 
 このスクリプトは以下を**すべて自動処理**する:
@@ -64,6 +67,7 @@ worktreeのパスを引数にしてスクリプトを実行する:
 
 ### Step 2: docker-compose.yml のポート変数化チェック
 
+`docker-compose.yml` または `compose.yml` が存在する場合のみ実行する。
 ポートがハードコードされている場合は、`.env` 変数参照に自動修正する:
 
 ```yaml
@@ -87,7 +91,7 @@ ports:
 
 worktree内のサブディレクトリ env ファイルも確認し、ポートの整合性を保つ:
 
-- **バックエンド**: `app/.env.development` 等の `BACKEND_URL`, `LOCALSTACK_ENDPOINT`, `DYNAMODB_ENDPOINT` 等の `localhost:ポート` がStep 1で書き換え済みか確認。未対応なら手動で修正。
+- **バックエンド**: `app/.env.development` 等の `BACKEND_URL`, `LOCALSTACK_ENDPOINT`, `DYNAMODB_ENDPOINT` 等の `localhost:ポート` がStep 1で書き換え済みか確認。未対応なら修正。
 - **フロントエンド**: `front/.env.local` 等の `VITE_MASTRA_API_URL` 等の `localhost:ポート` がStep 1で書き換え済みか確認。Viteのポート衝突は自動回避されるため優先度低。
 - **Mastraバックエンドのポート変更**: `mastra dev` 実行時に `PORT` 環境変数で制御可能。root `.env` の `MASTRA_PORT` の値を使い、`PORT=<MASTRA_PORT> npm run mastra:dev` で起動するようユーザーに案内する。
 
