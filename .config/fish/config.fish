@@ -33,6 +33,14 @@ abbr -a gc 'git checkout'
 abbr -a ga 'git add'
 abbr -a gp 'git push'
 
+#gwt (git worktree runner)
+abbr -a gwn 'git gtr new'
+abbr -a gwe 'git gtr editor'
+abbr -a gwa 'git gtr ai'
+abbr -a gwl 'git gtr list'
+abbr -a gwrm 'git gtr rm'
+abbr -a gwc 'git gtr clean --merged'
+
 #general
 abbr -a c 'clear'
 abbr -a e 'exit'

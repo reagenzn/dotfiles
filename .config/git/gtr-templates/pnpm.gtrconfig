@@ -1,0 +1,14 @@
+[gtr "editor"]
+  default = vs-code
+
+[gtr "ai"]
+  default = claude
+
+[gtr "copy"]
+  include = **/.env.example
+  include = **/.env.local
+  include = **/.env.development
+
+[gtr "hook"]
+  postCreate = pnpm install
+  postCreate = claude -p "worktreeが作成されました。worktree作成時の自動処理を実行してください。" --allowedTools Bash,Read,Write,Edit,Glob,Grep

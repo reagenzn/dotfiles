@@ -15,3 +15,13 @@
 	editor = nvim
 [user]
 	name = reagenzn
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[gtr "editor"]
+	default = vs-code
+[gtr "ai"]
+	default = claude

@@ -56,3 +56,15 @@
     zcoali   = zco --allow-empty -m "initial\\ commit"
     zcoam    = zco --amend
     zcoamn   = zco --amend --no-edit
+    # gwt (git worktree runner)
+    wn       = gtr new
+    we       = gtr editor
+    wa       = gtr ai
+    wg       = gtr go
+    wr       = gtr run
+    wl       = gtr list
+    wrm      = gtr rm
+    wc       = gtr clean --merged
+    wcfg     = gtr config
+    winit    = !"~/dotfiles/scripts/setup-gtr.sh"
+    winitt   = !"~/dotfiles/scripts/setup-gtr.sh --template"
