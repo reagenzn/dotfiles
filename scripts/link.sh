@@ -18,6 +18,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf $(realpath ./.config/zsh/.p10k.zsh) ~/.p10k.zsh
   ln -sf $(realpath ./.config/.copilot) ~/
   rm -rf ~/.claude/skills && ln -sf $(realpath ./.config/.claude/skills) ~/.claude/skills
+  ln -sf $(realpath ./.config/.claude/settings.json) ~/.claude/settings.json
   # ln -sf $(realpath ./.config/vscode/keybindings.json) ~/Library/Application\ Support/Cursor/User/keybindings.json
   ln -sf $(realpath ./.config/vscode/keybindings.json) ~/Library/Application\ Support/Code/User/keybindings.json
   ln -sf $(realpath ./.config/obsidian/.obsidianvimrc) $OBSIDIAN_DIR/.vimrc

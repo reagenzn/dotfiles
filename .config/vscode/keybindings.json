@@ -884,4 +884,37 @@
     "command": "-claude-vscode.focus",
     "when": "editorTextFocus && !config.claudeCode.useTerminal",
   },
+  // alt+s/v で分割表示（どこからでも有効）
+  {
+    "key": "alt+s",
+    "command": "workbench.action.splitEditorDown",
+  },
+  {
+    "key": "alt+v",
+    "command": "workbench.action.splitEditorRight",
+  },
+  // alt+j/k でタブ移動（どこからでも有効）
+  {
+    "key": "alt+k",
+    "command": "workbench.action.nextEditor",
+  },
+  {
+    "key": "alt+j",
+    "command": "workbench.action.previousEditor",
+  },
+  {
+    "key": "shift+cmd+space",
+    "command": "-editor.action.triggerParameterHints",
+    "when": "editorHasSignatureHelpProvider && editorTextFocus",
+  },
+  {
+    "key": "shift+cmd+space",
+    "command": "claude-vscode.editor.open",
+    "when": "!config.claudeCode.useTerminal",
+  },
+  {
+    "key": "shift+cmd+escape",
+    "command": "-claude-vscode.editor.open",
+    "when": "!config.claudeCode.useTerminal",
+  },
 ]

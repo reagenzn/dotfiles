@@ -24,7 +24,7 @@ agent-browserは、高速なブラウザ自動化CLIツールで、AIエージ�
 ### ページを開く
 
 ```bash
-agent-browser open https://example.com
+agent-browser --headed open https://example.com
 ```
 
 ### スクリーンショットを取得
@@ -81,7 +81,7 @@ agent-browser errors --clear
 
 ```bash
 # ページを開く
-agent-browser open http://localhost:3000
+agent-browser --headed open http://localhost:3000
 
 # 通常の表示を確認
 agent-browser screenshot
@@ -185,8 +185,8 @@ agent-browser press "Control+a"
 
 ```bash
 # セッションを指定して実行
-agent-browser --session dev open http://localhost:3000
-agent-browser --session prod open https://example.com
+agent-browser --headed --session dev open http://localhost:3000
+agent-browser --headed --session prod open https://example.com
 
 # 現在のセッション確認
 agent-browser session
@@ -243,7 +243,7 @@ agent-browser find role item nth 3 click
 
 ### 注意事項
 
-- デフォルトはヘッドレスモード。ブラウザを表示したい場合は`--headed`オプションを使用
+- **常に `--headed` オプションを付けて実行すること**（ブラウザウィンドウを表示した状態で操作する）
 - 認証が必要なページの場合、`--headers`でHTTPヘッダーを設定可能
 - セレクタは CSS セレクタを使用（例: `.class`, `#id`, `[attribute]`）
 
@@ -339,7 +339,7 @@ agent-browser set media dark reduced-motion
 
 ```bash
 # ログインフローの完全テスト
-agent-browser open http://localhost:3000/login
+agent-browser --headed open http://localhost:3000/login
 agent-browser snapshot -i
 agent-browser fill "input[name='email']" "test@example.com"
 agent-browser fill "input[name='password']" "password123"
@@ -404,15 +404,15 @@ agent-browser screenshot
 詳細なログを確認:
 
 ```bash
-agent-browser --debug open https://example.com
+agent-browser --headed --debug open https://example.com
 ```
 
-### ブラウザウィンドウを表示
+### ヘッドレスモードで実行したい場合
 
-ヘッドレスモードでない実行:
+`--headed` を外すとヘッドレスモードで実行されます:
 
 ```bash
-agent-browser --headed open https://example.com
+agent-browser open https://example.com
 ```
 
 ### カスタムブラウザ実行パスの指定
