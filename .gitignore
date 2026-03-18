@@ -9,5 +9,9 @@
 
 *.swp
 
+# Local-only Claude Code skills and commands (not shared via dotfiles)
+.config/.claude/skills/*-local/
+.config/.claude/commands/*-local.md
+
 .DS_Store
 */.DS_Store

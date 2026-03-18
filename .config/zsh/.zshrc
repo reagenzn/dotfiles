@@ -73,6 +73,9 @@ alias reload='source ~/.zshrc'
 alias cc='claude'
 alias edot='nvim ~/dotfiles'
 
+# worktree setup
+alias setup-worktrees='~/dotfiles/scripts/setup-worktrees.sh'
+
 # gwt (git worktree runner)
 alias gwn='git gtr new'
 alias gwe='git gtr editor'
@@ -109,3 +112,8 @@ function prompt_my_aws() {
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 . "$HOME/.local/bin/env"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# mise
+eval "$(mise activate zsh)"

@@ -891,7 +891,7 @@
   },
   {
     "key": "alt+v",
-    "command": "workbench.action.splitEditorRight",
+    "command": "workbench.action.splitEditorLeft",
   },
   // alt+j/k でタブ移動（どこからでも有効）
   {
@@ -916,5 +916,10 @@
     "key": "shift+cmd+escape",
     "command": "-claude-vscode.editor.open",
     "when": "!config.claudeCode.useTerminal",
+  },
+  {
+    "key": "shift+cmd+space",
+    "command": "claude-vscode.terminal.open",
+    "when": "config.claudeCode.useTerminal",
   },
 ]

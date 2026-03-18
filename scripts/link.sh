@@ -16,8 +16,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf $(realpath ./.config/tmux/.tmux.mac.conf) ~/.tmux.mac.conf
   ln -sf $(realpath ./.config/zsh/.zshrc) ~/.zshrc
   ln -sf $(realpath ./.config/zsh/.p10k.zsh) ~/.p10k.zsh
+  ln -sf $(realpath ./.config/worktrunk/config.toml) ~/config.toml
   ln -sf $(realpath ./.config/.copilot) ~/
   rm -rf ~/.claude/skills && ln -sf $(realpath ./.config/.claude/skills) ~/.claude/skills
+  rm -rf ~/.claude/commands && ln -sf $(realpath ./.config/.claude/commands) ~/.claude/commands
   ln -sf $(realpath ./.config/.claude/settings.json) ~/.claude/settings.json
   # ln -sf $(realpath ./.config/vscode/keybindings.json) ~/Library/Application\ Support/Cursor/User/keybindings.json
   ln -sf $(realpath ./.config/vscode/keybindings.json) ~/Library/Application\ Support/Code/User/keybindings.json
