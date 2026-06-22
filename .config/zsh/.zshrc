@@ -117,3 +117,11 @@ if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)
 
 # mise
 eval "$(mise activate zsh)"
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
+# sentry
+fpath=("/Users/natsuki.fukazawa/.local/share/zsh/site-functions" $fpath)
+
+# sentry
+export PATH="/Users/natsuki.fukazawa/.sentry/bin:$PATH"

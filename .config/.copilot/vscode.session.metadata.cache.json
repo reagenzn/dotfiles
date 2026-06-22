@@ -1,0 +1,14 @@
+{
+  "a46faabd-9d3c-4829-a565-83e6c48fb567": {
+    "worktreeProperties": {
+      "autoCommit": true,
+      "branchName": "copilot-worktree-2026-02-20T06-30-04",
+      "baseCommit": "373bfc02fca644b89dfcf8db826476aa650cab70",
+      "repositoryPath": "/Users/natsuki.fukazawa/dotfiles",
+      "worktreePath": "/Users/natsuki.fukazawa/dotfiles.worktrees/copilot-worktree-2026-02-20T06-30-04",
+      "changes": [],
+      "version": 1
+    },
+    "writtenToDisc": true
+  }
+}

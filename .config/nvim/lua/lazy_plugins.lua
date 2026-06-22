@@ -349,6 +349,7 @@ return {{
 -- },
 {
     "nvim-treesitter/nvim-treesitter",
+    cond = vim.g.vscode ~= 1,
     ensure_installed = 'maintained',
     highlight = {
         enable = true

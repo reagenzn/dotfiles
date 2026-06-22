@@ -163,6 +163,7 @@ require("lazy").setup({
   -- treesitter (シンタックスハイライト強化)
   {
     "nvim-treesitter/nvim-treesitter",
+    cond = vim.g.vscode ~= 1,
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({

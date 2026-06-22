@@ -16,11 +16,16 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf $(realpath ./.config/tmux/.tmux.mac.conf) ~/.tmux.mac.conf
   ln -sf $(realpath ./.config/zsh/.zshrc) ~/.zshrc
   ln -sf $(realpath ./.config/zsh/.p10k.zsh) ~/.p10k.zsh
-  ln -sf $(realpath ./.config/worktrunk/config.toml) ~/config.toml
   ln -sf $(realpath ./.config/.copilot) ~/
-  rm -rf ~/.claude/skills && ln -sf $(realpath ./.config/.claude/skills) ~/.claude/skills
-  rm -rf ~/.claude/commands && ln -sf $(realpath ./.config/.claude/commands) ~/.claude/commands
-  ln -sf $(realpath ./.config/.claude/settings.json) ~/.claude/settings.json
+  # ~/.claude/ 配下は chezmoi で管理 (dotfiles/dot_claude/)
+  # chezmoi.toml を先に symlink してから apply (sourceDir 解決のため)
+  mkdir -p ~/.config/chezmoi
+  ln -sf $(realpath ./.config/chezmoi/chezmoi.toml) ~/.config/chezmoi/chezmoi.toml
+  if command -v chezmoi >/dev/null 2>&1; then
+    chezmoi apply
+  else
+    echo "warning: chezmoi not installed; skipping ~/.claude/ apply" >&2
+  fi
   # ln -sf $(realpath ./.config/vscode/keybindings.json) ~/Library/Application\ Support/Cursor/User/keybindings.json
   ln -sf $(realpath ./.config/vscode/keybindings.json) ~/Library/Application\ Support/Code/User/keybindings.json
   ln -sf $(realpath ./.config/obsidian/.obsidianvimrc) $OBSIDIAN_DIR/.vimrc

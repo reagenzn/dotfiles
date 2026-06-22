@@ -58,8 +58,6 @@ abbr -a reload exit $shell
 abbr -a ta tmux attach -t
 abbr -a tl tmux list-sessions
 abbr -a spt setup-parralel-tasks
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 # Added by LM Studio CI (lms)
 set -gx PATH $PATH /Users/fukazawanatsuki/.lmstudio/binset -gx PYENV_ROOT $HOME/.pyenv
@@ -82,3 +80,5 @@ abbr -a qs 'cd ~/forStudy/Quartz && npx quartz sync'
 
 # Added by Antigravity
 fish_add_path /Users/fukazawanatsuki/.antigravity/antigravity/bin
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH

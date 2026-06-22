@@ -1,0 +1,47 @@
+#!/bin/bash
+# chezmoi modify_ script for ~/.claude/settings.json
+# stdin  = current target file content (apm 等が書き込んだ hooks を含む可能性)
+# stdout = dotfiles 管理キーをマージ済みの settings.json
+# 戦略: dotfiles 管理キーで上書き、それ以外 (hooks 等) は保持
+set -euo pipefail
+
+PATCH=$(cat <<'JSON'
+{
+  "env": {
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "includeCoAuthoredBy": false,
+  "statusLine": {
+    "type": "command",
+    "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "github@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": false,
+    "claude-code-setup@claude-plugins-official": false,
+    "claude-md-management@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": false,
+    "codex@openai-codex": true
+  },
+  "extraKnownMarketplaces": {
+    "openai-codex": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/openai/codex-plugin-cc.git"
+      }
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "vim",
+  "effortLevel": "max"
+}
+JSON
+)
+
+INPUT=$(cat)
+if [[ -z "${INPUT//[[:space:]]/}" ]]; then
+  printf '%s\n' "$PATCH"
+else
+  printf '%s' "$INPUT" | jq --argjson patch "$PATCH" '. * $patch'
+fi

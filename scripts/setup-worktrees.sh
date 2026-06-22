@@ -52,26 +52,19 @@ git pull origin "$BASE_BRANCH"
 # worktrees ディレクトリ作成
 mkdir -p "$WORKTREES_DIR"
 
-# コピー対象の env ファイルを収集
+# コピー対象の env ファイルを再帰的に収集（node_modules, .git, dist, .next, cdk.out は除外）
 ENV_FILES=()
-for envfile in .env .env.development .env.local; do
-  if [ -f "$REPO_PATH/$envfile" ]; then
-    ENV_FILES+=("$envfile")
-  fi
-done
-
-# サブディレクトリ内の env ファイルも検索（1階層のみ）
-for dir in "$REPO_PATH"/*/; do
-  [ -d "$dir" ] || continue
-  dirname=$(basename "$dir")
-  # node_modules, .git 等は除外
-  [[ "$dirname" == node_modules || "$dirname" == .git || "$dirname" == dist || "$dirname" == .next ]] && continue
-  for envfile in .env .env.development .env.local; do
-    if [ -f "$dir/$envfile" ]; then
-      ENV_FILES+=("$dirname/$envfile")
-    fi
-  done
-done
+while IFS= read -r envpath; do
+  # リポジトリルートからの相対パス
+  rel="${envpath#$REPO_PATH/}"
+  ENV_FILES+=("$rel")
+done < <(find "$REPO_PATH" \
+  -path "*/node_modules" -prune -o \
+  -path "*/.git" -prune -o \
+  -path "*/dist" -prune -o \
+  -path "*/.next" -prune -o \
+  -path "*/cdk.out" -prune -o \
+  \( -name ".env" -o -name ".env.development" -o -name ".env.local" \) -type f -print)
 
 if [ ${#ENV_FILES[@]} -gt 0 ]; then
   echo ">>> ハードリンク対象の環境変数ファイル:"
@@ -115,21 +108,28 @@ for i in $(seq 1 $WORKTREE_COUNT); do
     echo "    リンク: $envfile"
   done
 
-  # npm ci を実行（package.json があるディレクトリで）
-  if [ -f "$WT_PATH/package.json" ]; then
-    echo "    npm ci 実行中 (root)..."
-    (cd "$WT_PATH" && npm ci --loglevel=warn)
+  # node_modules をメインリポジトリから再帰的にシンボリックリンク
+  while IFS= read -r nm; do
+    rel="${nm#$REPO_PATH/}"
+    dest="$WT_PATH/$rel"
+    dest_dir=$(dirname "$dest")
+    if [ -d "$dest_dir" ] && [ ! -e "$dest" ]; then
+      ln -s "$nm" "$dest"
+      echo "    シンボリックリンク: $rel"
+    fi
+  done < <(find "$REPO_PATH" \
+    -path "*/.git" -prune -o \
+    -path "*/dist" -prune -o \
+    -path "*/.next" -prune -o \
+    -path "*/cdk.out" -prune -o \
+    -name "node_modules" -type d -not -path "*/node_modules/*" -print)
+
+  # .husky/_ をメインリポジトリからシンボリックリンク
+  if [ -d "$REPO_PATH/.husky/_" ] && [ ! -e "$WT_PATH/.husky/_" ]; then
+    mkdir -p "$WT_PATH/.husky"
+    ln -s "$REPO_PATH/.husky/_" "$WT_PATH/.husky/_"
+    echo "    シンボリックリンク: .husky/_"
   fi
-  # サブディレクトリの package.json もチェック（monorepo対応）
-  for pkg in "$WT_PATH"/*/package.json; do
-    [ -f "$pkg" ] || continue
-    pkg_dir=$(dirname "$pkg")
-    pkg_name=$(basename "$pkg_dir")
-    # root の node_modules は除外
-    [[ "$pkg_name" == node_modules ]] && continue
-    echo "    npm ci 実行中 ($pkg_name)..."
-    (cd "$pkg_dir" && npm ci --loglevel=warn)
-  done
 
   echo "    完了: $WT_PATH"
   echo ""

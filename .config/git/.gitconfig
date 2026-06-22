@@ -1,7 +1,7 @@
 [include]
   path=./.git-aliases
   path=./.git-user
-  
+
 [pull]
 	rebase = false
 [http]
@@ -13,10 +13,8 @@
 	required = true
 [core]
 	editor = nvim
-[user]
-	name = reagenzn
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/opt/homebrew/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
