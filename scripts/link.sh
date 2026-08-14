@@ -16,6 +16,14 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   ln -sf $(realpath ./.config/tmux/.tmux.mac.conf) ~/.tmux.mac.conf
   ln -sf $(realpath ./.config/zsh/.zshrc) ~/.zshrc
   ln -sf $(realpath ./.config/zsh/.p10k.zsh) ~/.p10k.zsh
+  # ripgrep のユーザースコープ除外リスト（telescope から --ignore-file で参照）
+  ln -sf $(realpath ./.config/rg/ignore) ~/.ignore
+  # herdr: ログ・ソケット・session.json を同ディレクトリに書くため config.toml のみリンク
+  mkdir -p ~/.config/herdr
+  ln -sf $(realpath ./.config/herdr/config.toml) ~/.config/herdr/config.toml
+  if command -v herdr >/dev/null 2>&1; then
+    herdr server reload-config >/dev/null 2>&1 || true
+  fi
   ln -sf $(realpath ./.config/.copilot) ~/
   # ~/.claude/ 配下は chezmoi で管理 (dotfiles/dot_claude/)
   # chezmoi.toml を先に symlink してから apply (sourceDir 解決のため)

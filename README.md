@@ -38,7 +38,7 @@ This guide outlines the steps to set up your development environment on macOS af
 4.  **Run `make link`**
     *   This command sets up your configuration files (dotfiles).
     *   It creates symbolic links from the configuration files within this repository to their standard locations in your home directory (e.g., `~/.config/`, `~/.gitconfig`).
-    *   This step applies the custom configurations for tools such as Alacritty (terminal), Fish (shell), Git, Neovim (editor), Tmux, and VSCode keybindings.
+    *   This step applies the custom configurations for tools such as Alacritty (terminal), Fish (shell), Git, Neovim (editor), Tmux, Herdr (agent multiplexer), and VSCode keybindings.
     *   Execute the command:
         ```bash
         make link
@@ -62,6 +62,66 @@ This guide outlines the steps to set up your development environment on macOS af
         *   Alacritty
         *   Visual Studio Code (VSCode)
         *   Raycast
+
+## Claude Code 設定（dot_claude）
+
+`dot_claude/` 配下が Claude Code の**ユーザースコープ**設定。chezmoi で `~/.claude/` に展開する。
+
+### 適用方法
+
+```bash
+chezmoi diff      # 適用前に差分確認（推奨）
+chezmoi apply     # ~/.claude/ に反映
+```
+
+`dot_` プレフィックスは先頭ドットに変換され、`dot_claude/` → `~/.claude/` になる。`commands` `rules` `skills` `settings.json` がユーザースコープに反映される。
+
+### 仕組み
+
+- chezmoi の source path はこのリポジトリ
+- `.chezmoiignore` が `.claude` 以外を全無視 → chezmoi 管理対象は `dot_claude` のみ（他の dotfiles は `make link` の symlink 管理で別系統）
+- 新規ファイルを `dot_claude/` に置いて `chezmoi apply` するだけで反映される
+
+### settings.json について
+
+`dot_claude/` に静的な `settings.json` は**存在しない**。代わりに `modify_settings.json` がある。
+
+- ファイル名 `modify_<target>` は chezmoi の **modify スクリプト**。`chezmoi apply` 時に実行され、標準出力が `~/.claude/settings.json` の内容になる
+- 中身は `#!/bin/sh` のシェルスクリプトで、固定 JSON を出力している（= 実質全置換）
+- **設定を変えたい場合は `modify_settings.json` 内の JSON を直接編集** → `chezmoi apply`
+- 注意: 現状 stdin を読まないため、`~/.claude/settings.json` の手動変更は apply で上書きされる
+
+### 逆方向（home → リポジトリ取り込み）
+
+```bash
+chezmoi re-add    # ~/.claude/ の手動変更をリポジトリに取り込む
+```
+
+## herdr 設定（.config/herdr）
+
+`herdr`（AI エージェント用ターミナルマルチプレクサ）の設定。`make link` で `~/.config/herdr/config.toml` に symlink される。
+
+キーバインドは `.config/tmux/.tmux.conf` を踏襲している（prefix = `ctrl+s`、`h/j/k/l` でペイン移動、`o` で左右分割、`s` で上下分割、`c` で新規タブ）。`prefix+s` を分割に使うため、herdr 既定の `settings`（`prefix+s`）は `prefix+shift+s` へ退避している。
+
+### ディレクトリ丸ごと symlink しない理由
+
+herdr は `~/.config/herdr/` 配下にログ（`herdr-*.log`）・ソケット（`*.sock`）・`session.json` を書き込む。ディレクトリを symlink するとこれらがリポジトリに混入するため、`config.toml` のみリンクしている。
+
+### 反映方法
+
+`make link` 内で `herdr server reload-config` を自動実行する。手動で反映する場合:
+
+```bash
+herdr server reload-config   # または herdr 上で prefix+shift+r
+```
+
+設定が受理されたかは戻り値の `status` と `diagnostics` で確認できる（`"status":"applied"` かつ `diagnostics` が空なら成功）。
+
+### 全設定項目の確認
+
+```bash
+herdr --default-config       # 既定値つきの全項目をコメント形式で出力
+```
 
 ## Additional Commands
 

@@ -31,33 +31,22 @@ return {{
                     'hrsh7th/cmp-nvim-lua', 'octaltree/cmp-look', 'hrsh7th/cmp-path', 'hrsh7th/cmp-calc',
                     'f3fora/cmp-spell', 'hrsh7th/cmp-emoji'}
 }, {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {{'neovim/nvim-lspconfig'}, {"williamboman/mason.nvim"}},
+    "mason-org/mason-lspconfig.nvim",
+    dependencies = {{'neovim/nvim-lspconfig'}, {"mason-org/mason.nvim"}},
     cond = vim.g.vscode ~= 1,
     config = function()
         require("mason").setup()
-        local registry = require "mason-registry"
-        local packages = {"typescript-language-server"}
-        registry.refresh(function()
-            for _, pkg_name in ipairs(packages) do
-                local pkg = registry.get_package(pkg_name)
-                if not pkg:is_installed() then
-                    pkg:install()
-                end
-            end
-        end)
 
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local lspconfig = require('lspconfig')
+        -- 全サーバー共通の設定。lsp/<name>.lua の定義に上乗せされる
+        vim.lsp.config('*', {
+            capabilities = require("cmp_nvim_lsp").default_capabilities()
+        })
 
-        local servers = {"tsserver"}
-
-        for _, lsp in ipairs(servers) do
-            lspconfig[lsp].setup {
-                -- on_attach = my_custom_on_attach,
-                capabilities = capabilities
-            }
-        end
+        -- ensure_installed で mason 側の導入まで賄い、automatic_enable が
+        -- vim.lsp.enable を呼ぶので個別の enable は不要
+        require("mason-lspconfig").setup {
+            ensure_installed = {"ts_ls"}
+        }
 
         -- nvim-cmp key bindings
         local cmp = require("cmp")
@@ -99,9 +88,17 @@ return {{
                 -- 呼び出し元一覧 (qflist)
                 vim.keymap.set('n', '<C-j>h', vim.lsp.buf.references, opts)
                 -- 次の診断へ移動
-                vim.keymap.set('n', '<M-j>', vim.diagnostic.goto_next, opts)
+                vim.keymap.set('n', '<M-j>', function()
+                    vim.diagnostic.jump {
+                        count = 1
+                    }
+                end, opts)
                 -- 前の診断へ移動
-                vim.keymap.set('n', '<M-k>', vim.diagnostic.goto_prev, opts)
+                vim.keymap.set('n', '<M-k>', function()
+                    vim.diagnostic.jump {
+                        count = -1
+                    }
+                end, opts)
                 -- TODO: 一旦このまま
                 vim.keymap.set('n', '<space>f', function()
                     vim.lsp.buf.format {
@@ -190,6 +187,31 @@ return {{
         vim.g["fern#loglevel"] = "info"
     end
 }, {
+    -- ファイルをバッファとして編集するファイラ。ツリー表示は fern (<Space>e) と併用
+    "stevearc/oil.nvim",
+    cond = vim.g.vscode ~= 1,
+    lazy = false,
+    keys = {{
+        "-",
+        "<cmd>Oil<cr>",
+        mode = {"n"},
+        desc = "Oil: 親ディレクトリを開く"
+    }, {
+        "<Space>-",
+        "<cmd>Oil --float<cr>",
+        mode = {"n"},
+        desc = "Oil: フロートで開く"
+    }},
+    dependencies = {"nvim-tree/nvim-web-devicons"},
+    opts = {
+        -- fern を <Space>e のドロワーとして使うため、`nvim .` の乗っ取りはさせない
+        default_file_explorer = false,
+        view_options = {
+            -- fern の default_hidden = 1 に合わせる
+            show_hidden = true
+        }
+    }
+}, {
     "cespare/vim-toml",
     cond = vim.g.vscode ~= 1
 }, {
@@ -205,14 +227,30 @@ return {{
     lazy = false,
     keys = {{
         "<Space>p",
-        "<cmd>Telescope find_files find_command=rg,--files,--hidden,--glob,!*.git <cr>",
+        function()
+            require("telescope.builtin").find_files()
+        end,
         mode = {"n"},
-        silent = true
-    }, {"<Space>hh", "<cmd>Telescope live_grep<cr>"}, {"<Space>hb", "<cmd>Telescope buffers<cr>"},
-            {"<Space>;;", "<cmd>Telescope resume<cr>"}, {"<Space>fl", "<cmd>Telescope lazy<cr>"}},
+        silent = true,
+        desc = "Telescope: ファイル検索"
+    }, {
+        "<Space>hh",
+        function()
+            require("telescope.builtin").live_grep()
+        end,
+        mode = {"n"},
+        silent = true,
+        desc = "Telescope: 全文検索"
+    }, {"<Space>hb", "<cmd>Telescope buffers<cr>"}, {"<Space>;;", "<cmd>Telescope resume<cr>"},
+            {"<Space>fl", "<cmd>Telescope lazy<cr>"}},
     dependencies = {'nvim-lua/plenary.nvim'},
     config = function()
         local actions = require("telescope.actions")
+
+        -- gitignore された成果物も検索対象に含めつつ、~/.ignore に列挙した
+        -- node_modules 等だけを除外する
+        local rg_ignore = {"--no-ignore-vcs", "--ignore-file=" .. vim.fn.expand("~/.ignore")}
+
         require("telescope").setup {
             defaults = {
                 mappings = {
@@ -224,7 +262,16 @@ return {{
                         ["q"] = actions.close
                     }
                 },
-                layout_strategy = 'vertical'
+                layout_strategy = 'vertical',
+                -- live_grep が使う rg 引数。telescope の既定に除外指定を足す
+                vimgrep_arguments = vim.list_extend({"rg", "--color=never", "--no-heading",
+                                                     "--with-filename", "--line-number", "--column", "--smart-case",
+                                                     "--hidden"}, rg_ignore)
+            },
+            pickers = {
+                find_files = {
+                    find_command = vim.list_extend({"rg", "--files", "--hidden"}, rg_ignore)
+                }
             },
             extensions = {
                 frecency = {

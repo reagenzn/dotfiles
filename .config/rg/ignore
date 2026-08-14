@@ -1,0 +1,49 @@
+# ripgrep のユーザースコープ除外リスト（~/.ignore に symlink）
+#
+# .gitignore とは独立して効く。nvim の telescope からは
+# `--no-ignore-vcs --ignore-file=$HOME/.ignore` で参照しており、
+# gitignore された成果物（ビルド出力・.env 等）は検索に出しつつ、
+# ここに書いたものだけを除外する。
+#
+# 打ち消したい場合は先頭に `!` を付ける（.gitignore と同じ記法）。
+
+# 依存パッケージ
+node_modules/
+.pnpm-store/
+vendor/
+.venv/
+venv/
+__pycache__/
+
+# ビルド・キャッシュ成果物
+dist/
+build/
+.next/
+.nuxt/
+.turbo/
+.parcel-cache/
+target/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ロックファイル（差分閲覧はするが全文検索では邪魔）
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+Cargo.lock
+poetry.lock
+uv.lock
+
+# minify・ソースマップ
+*.min.js
+*.min.css
+*.map
+
+# VCS 内部
+.git/
+.jj/
+
+# OS・エディタ
+.DS_Store
+*.swp

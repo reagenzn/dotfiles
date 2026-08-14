@@ -1,0 +1,40 @@
+# herdr configuration
+# 全項目・既定値は `herdr --default-config` を参照
+# 反映: `herdr server reload-config`（prefix+shift+r でも可）
+
+onboarding = false
+
+[terminal]
+# .tmux.mac.conf の default-shell に合わせる
+default_shell = "/bin/zsh"
+
+[keys]
+# .tmux.conf: set -g prefix C-s / unbind C-b
+prefix = "ctrl+s"
+
+# prefix+s を tmux の垂直分割に使うため、settings を退避
+settings = "prefix+shift+s"
+
+# .tmux.conf: bind 'o' split-window -h（左右に並ぶ）
+split_vertical = "prefix+o"
+# .tmux.conf: bind 's' split-window -v（上下に並ぶ）
+split_horizontal = "prefix+s"
+
+# .tmux.conf: bind h/j/k/l select-pane（herdr の既定と同一だが明示）
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# .tmux.conf: bind c new-window（herdr の既定と同一だが明示）
+new_tab = "prefix+c"
+
+# .tmux.conf の bind -r H/J/K resize-pane に相当。
+# herdr は個別リサイズではなくモード方式なので prefix+r のまま（既定）。
+resize_mode = "prefix+r"
+
+[ui]
+# .tmux.conf: set-option -g mouse on
+mouse_capture = true
+# コピーモード相当（tmux の mode-keys vi + y ヤンクの代替）
+copy_on_select = true

@@ -9,3 +9,8 @@ size = 12
   [font.normal]
   family = "Hack Nerd Font"
 
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"

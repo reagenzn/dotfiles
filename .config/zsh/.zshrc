@@ -43,23 +43,49 @@ plugins=(
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
 
+# fzf で祖先ディレクトリを選んで cd する。
+# fzf-cd-widget (Alt-C) はカレント配下しか見ないため、上方向はこちらを使う。
+function fzf-cd-parent-widget() {
+  local dir=$PWD ancestors=()
+  while [[ $dir != / ]]; do
+    dir=${dir:h}
+    ancestors+=("$dir")
+  done
+
+  local selected
+  selected=$(printf '%s\n' "${ancestors[@]}" \
+    | FZF_DEFAULT_OPTS="--height 40% --reverse --prompt='親ディレクトリ> '" fzf) || return 0
+
+  [[ -n $selected ]] || return 0
+  builtin cd -- "$selected"
+  zle reset-prompt
+}
+zle -N fzf-cd-parent-widget
+
 # zsh-vi-mode custom keybindings
 # This function is called after zsh-vi-mode initialization
 function zvm_after_init() {
   # Re-source fzf keybindings if available
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-  
+
   # Bind Ctrl+R for fzf history search in both modes
   bindkey -M viins '^R' fzf-history-widget
   bindkey -M vicmd '^R' fzf-history-widget
-  
+
   # Bind Ctrl+W for backward-kill-word in both modes
   bindkey -M viins '^W' backward-kill-word
   bindkey -M vicmd '^W' backward-kill-word
-  
+
   # Additional useful bindings for normal mode
   bindkey -M vicmd '^A' beginning-of-line
   bindkey -M vicmd '^E' end-of-line
+
+  # 祖先ディレクトリへ cd（Alt-C の逆方向）。
+  # Alt+Up は端末が CSI を送らない場合があるため Alt-K も併用する。
+  bindkey -M viins '^[[1;3A' fzf-cd-parent-widget
+  bindkey -M vicmd '^[[1;3A' fzf-cd-parent-widget
+  bindkey -M viins '^[k' fzf-cd-parent-widget
+  bindkey -M vicmd '^[k' fzf-cd-parent-widget
 }
 
 # Aliases
@@ -125,3 +151,6 @@ fpath=("/Users/natsuki.fukazawa/.local/share/zsh/site-functions" $fpath)
 
 # sentry
 export PATH="/Users/natsuki.fukazawa/.sentry/bin:$PATH"
+
+# Claude Code multi-account
+alias claude-ent='CLAUDE_CONFIG_DIR=$HOME/.claude-enterprise command claude'

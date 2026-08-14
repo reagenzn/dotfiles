@@ -1,0 +1,5 @@
+2026-08-09T23:57:49.284Z [INFO] Starting CLI in server mode (stdio)
+2026-08-09T23:57:49.286Z [INFO] Starting CLI in stdio mode (Rust JSON-RPC engine)
+2026-08-09T23:57:49.289Z [INFO] CLI server ready (stdio mode, Rust JSON-RPC engine)
+2026-08-09T23:57:49.289Z [INFO] Server started, waiting for requests
+2026-08-09T23:57:49.304Z [INFO] Shell completions: installed zsh completions to /Users/natsuki.fukazawa/.local/share/zsh/site-functions/_copilot

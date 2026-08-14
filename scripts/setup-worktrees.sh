@@ -124,11 +124,14 @@ for i in $(seq 1 $WORKTREE_COUNT); do
     -path "*/cdk.out" -prune -o \
     -name "node_modules" -type d -not -path "*/node_modules/*" -print)
 
-  # .husky/_ をメインリポジトリからシンボリックリンク
+  # .husky/_ をメインリポジトリから実体コピー
+  # シンボリックリンクにすると git がリンクの中へ降りず、.husky/_/.gitignore(*) が効かない。
+  # トップの .gitignore に .husky/_ 行が無いリポ（例: voice-classifier）では worktree の git 差分に
+  # ?? .husky/_ として乗ってしまう。実体コピーなら内側の .gitignore(*) が効き差分に乗らない。
   if [ -d "$REPO_PATH/.husky/_" ] && [ ! -e "$WT_PATH/.husky/_" ]; then
     mkdir -p "$WT_PATH/.husky"
-    ln -s "$REPO_PATH/.husky/_" "$WT_PATH/.husky/_"
-    echo "    シンボリックリンク: .husky/_"
+    cp -R "$REPO_PATH/.husky/_" "$WT_PATH/.husky/_"
+    echo "    コピー: .husky/_"
   fi
 
   echo "    完了: $WT_PATH"

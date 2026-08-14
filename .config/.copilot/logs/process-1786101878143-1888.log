@@ -1,0 +1,10 @@
+2026-08-07T11:24:38.144Z [INFO] Starting CLI in server mode (stdio)
+2026-08-07T11:24:38.145Z [INFO] Starting CLI in stdio mode (Rust JSON-RPC engine)
+2026-08-07T11:24:38.147Z [INFO] CLI server ready (stdio mode, Rust JSON-RPC engine)
+2026-08-07T11:24:38.147Z [INFO] Server started, waiting for requests
+2026-08-07T11:24:38.152Z [INFO] Shell completions: installed zsh completions to /Users/natsuki.fukazawa/.local/share/zsh/site-functions/_copilot
+2026-08-07T16:00:59.312Z [INFO] Shutting down: stdin closed
+2026-08-07T16:00:59.315Z [INFO] Starting graceful shutdown of CLI server
+2026-08-07T16:00:59.315Z [INFO] Destroying 0 active sessions
+2026-08-07T16:00:59.318Z [INFO] Rust JSON-RPC engine stopped successfully
+2026-08-07T16:00:59.318Z [INFO] CLI server stopped successfully
